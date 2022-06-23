@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sultan <sultan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 08:16:57 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/06/22 09:29:54 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/06/22 20:52:51 by sultan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <pthread.h>
+#include "philo.h"
 
-typedef struct s_phil
-{
-    int n_of_phil;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-}	t_phil;
+
+// long long get_time(long long int curnt)
+// {
+//     struct timeval current;
+
+//     gettimeofday(&current, NULL);
+//     long long tiem = current.tv_sec * 1000 + current.tv_usec / 1000;
+//     return (tiem - curnt);
+// }
 
 static int	index_fun(const char *nbr, int *s)
 {
@@ -56,53 +56,76 @@ int	ft_atoi(const char *nbr)
 	return (nb * s);
 }
 
-void    *thread_function(void   *ptr)
-{
-    int id = (int *)ptr;
-    printf(" the id of this thread is  %d \n",id);
-    return (void *)ptr;
-}
+// void ft_forks(t_phil *philo)
+// {
+//     int left = philo->id - philo->nbr_hilo % philo->nbr_hilo;
+//     int right = philo->id + philo->nbr % philo->nbr_hilo;
 
-void create_thread(t_phil philo, int *id_philo)
+//     pthread_mutex_lock(&philo->forks[left]);
+//     pthread_mutex_lock(&philo->forks[right]);
+//     pthread_mutex_lock
+//     printf("%lld %d\n", ft_getime(philo->start),philo->id);
+//     ft_usleep(philo->time_eat);
+// }
+
+// void ft_muetx(t_philo *philo)
+// {
+//     int i = 0;
+//     pthread_mutex_t vsr;
+    
+//     vsr = malloc(sizeof(pthread_mutex_t) * philo->shared.n);
+//     while (i <= philo->shared.n)
+//     {
+//         pthread_mutex_init(philo->shared.forks[i], NULL);
+//         i++;
+//     }
+// }
+
+
+// void    *rotin(void   *ptr)
+// {
+//     t_phil philo;
+//     philo = *(t_phil *)ptr;
+    
+//     printf("i am philoserfer id   %d \n",philo.id);
+//     // while (true)
+//     // {
+        
+//     // }
+//     //! eating with LEFT FORK id + N - 1 and right for with id + 1 % n
+//     return (void *)ptr;
+// }
+
+void odd_philo(t_phil *philo)
 {
-    pthread_t   thread;
-    void        *return_status;
-    int index = 0;
+    int index;
     
-    while (philo.n_of_phil)
+    index = 1;
+    //ft_muetx(philo);
+    printf("i am    philoserfers");
+    while (index <= philo->shared->n)
     {
-        printf("index %d \n", index);
-       pthread_create(&thread, NULL, &thread_function, id_philo[index]);
-       index++;
+       philo-> id = index;
+       pthread_create(&philo->shared->philoserfers[index], NULL, &rotin, &philo);
+       sleep(1);
+       index+=2;
     }
-    
-    
-    // Error Handling
-    pthread_join(thread, &return_status);
-    printf("Thread returned %d\n", (int)return_status);
-    
 }
 
 int main(int ac, char *av[])
 {
     
-    t_phil philo;
-    int *id_philo;
-    int index;
+    t_phil  philo;
+    int     index;
+
+  //  philo.shared->start = ft_getime(0);
+    
     index = 0;
-    if (av[1] == NULL)
-    {
-        printf("error");
-        return 0;
-    }
-    philo.n_of_phil =  ft_atoi(av[1]);
-    id_philo = malloc(philo.n_of_phil * 4);
-    while (index < philo.n_of_phil)
-    {
-        id_philo[index] = index + 1;
-        index++;
-    }
-    printf(" nbr of philoserfer %d\n",philo.n_of_phil);
-    create_thread(philo, id_philo);
- 
+    philo.shared.n = ft_atoi(av[1]);
+    printf("index\n");
+    exit(0);
+    philo.shared.philoserfers = malloc(philo.shared.n * sizeof(pthread_t));
+    odd_philo(&philo);
+    //pintf(" nbr of philoserfer %d \n",philo.n_of_phil);
+    //create_thread(philo, id_philo);
 }

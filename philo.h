@@ -8,11 +8,7 @@
 
 typedef struct s_shared
 {
-    int time_to_die;
-    int n;
-    int start;
-    pthread_t *philoserfers;
-    pthread_mutex_t *forks;
+    long long start;
     
 }   t_shared;
 
@@ -24,8 +20,13 @@ typedef struct s_phil
     int t_sleep;
     int t_eat;
     int n_t_eat;
-    int start;
+    long long start;
+    long long last_eat;
+    int left;
+    int right;
     pthread_mutex_t *forks;
+    pthread_mutex_t *message;
+    t_shared data;
 }	t_phil;
 
 typedef struct arg

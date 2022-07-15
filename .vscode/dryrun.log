@@ -1,10 +1,6 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/ael-oual/Desktop/philo'
-gcc -Wall -Wextra -Werror   -c -o main.o main.c
-gcc -Wall -Wextra -Werror   -c -o message.o message.c
-gcc -Wall -Wextra -Werror   -c -o philo.o philo.c
-gcc -Wall -Wextra -Werror   -c -o rotine.o rotine.c
-gcc -Wall -Wextra -Werror   -c -o tools.o tools.c
-gcc -Wall -Wextra -Werror main.o message.o philo.o rotine.o tools.o 
+gcc -Wall -Wextra -Werror  main.o message.o philo.o rotine.o tools.o 
+ 
 make: Leaving directory `/Users/ael-oual/Desktop/philo'
  

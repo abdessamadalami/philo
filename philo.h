@@ -24,8 +24,11 @@ typedef struct s_phil
     long long last_eat;
     int left;
     int right;
+    int n_of_t;
     pthread_mutex_t *forks;
     pthread_mutex_t message;
+    pthread_mutex_t m;
+    pthread_mutex_t s;
     t_shared data;
 }	t_phil;
 

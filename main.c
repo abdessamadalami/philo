@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 08:16:57 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/05 15:33:04 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:07:00 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ long long get_time(void)
     int index = 0;
     while (index < n_p)
     {
+       // pthread_mutex_lock(&philo[index]->m);
         if(philo[index]->n_t_eat != 0)
             return 0;
         index++;
+       // pthread_mutex_unlock(&philo[index]->m);
     }
     return 1;
  }
@@ -40,22 +42,28 @@ long long get_time(void)
  {
     int index;
     
-    index = 0;
     while (1)
     {
-        
         index = 0;
         while (philo[index] && index < arg->n_philo )
         {
-           // printf(" philo numb %d \n",philo[index]->id);
+            pthread_mutex_lock(&philo[index]->m);
             if (get_time() - philo[index]->last_eat >= philo[index]->t_die )
             {
                 pthread_mutex_lock(&philo[index]->message);
                 printf("%lld ms philo %d died\n", get_time() - philo[index]->start, philo[index]->id);
-                return 1;
+              //   pthread_mutex_destroy(&philo[index]->m);
+                return (1);
             }
+           pthread_mutex_unlock(&philo[index]->m);
+          // 
             if (check_n(philo,arg->n_philo))
-                    return (1);
+            {
+               //  pthread_mutex_destroy(&philo[index]->m);
+                return (1);
+            }
+            pthread_mutex_destroy(&philo[index]->m);
+           // pthread_mutex_unlock(&philo[index]->m);
             index++;
         }
     }

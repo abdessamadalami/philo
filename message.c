@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:51:10 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/04 12:44:22 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:24:50 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void  print_mess(int fork, char l, t_phil *philo)
 {
-    fork =0;
+    fork = 0;
     if (l == 'l')
     {
         // usleep(5000);

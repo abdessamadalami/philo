@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:54:11 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/05 14:53:44 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:39:59 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,14 @@ void odds_philo(pthread_t *threads, t_phil **philo)
     
     index = 0;
     while (index < philo[0]->n_philo)
-    //    philo[index] 
     {
        pthread_create(&threads[index], NULL, rotin, (void *)philo[index]);
        usleep(100);
+       
        index++;
     }
-    //usleep(200);
 }
 
-void eveen_philo(pthread_t *threads, t_phil **philo)
-{
-    int index;
-    
-    index = 1;
-   // printf("%d  n philo. \n",philo[1]->n_philo );
-    while (index < philo[0]->n_philo)
-    {
-       pthread_create(&threads[index], NULL, rotin, (void *)philo[index]);
-       index +=2;
-    }
-}
 
 pthread_mutex_t *ft_muetx(int n_philo)
 {
@@ -61,13 +48,16 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
  {
     pthread_mutex_t *forks;
     pthread_mutex_t message;
-    
+    pthread_mutex_t m;
+    pthread_mutex_t s;
     int i;
 
     i = 0;
     forks = ft_muetx(arg->n_philo);
     // message = malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(&message,0);
+    pthread_mutex_init(&m,0);
+    pthread_mutex_init(&s,0);
     long long start = get_time();
     while (i < arg->n_philo)
     {
@@ -84,6 +74,8 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
         philo[i]->last_eat = start;
         philo[i]->left = i;
         philo[i]->right = (i + 1) % arg->n_philo;
+        philo[i]->m = m;
+        philo[i]->s = s;
         i++;   
     }
     //printf(" this is the t_die of philoserfer %d = %d \n", philo[0]->id, philo[0]->t_die);

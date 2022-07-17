@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:48:00 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/05 15:30:34 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:20:59 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ t_par *check(int ac, char **av)
             if (index == 3)
                 parm->t_eat = ft_atoi(av[index]);
             if (index == 5)
-                parm->n_t_eat = ft_atoi(av[index]);     
+			{
+			
+                parm->n_t_eat = ft_atoi(av[index]);
+			}
         }
         else
             return 0;

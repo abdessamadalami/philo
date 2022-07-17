@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:54:11 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/15 21:39:59 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/16 09:18:06 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
         philo[i]->t_die = arg->t_die;
         philo[i]->t_eat = arg->t_eat;
         philo[i]->t_sleep = arg->t_sleep;
-        philo[i]->n_t_eat = arg->n_t_eat;
+        philo[i]->n_t_eat = 0;
+        // philo[i]->n_t_eat = arg->n_t_eat;
         philo[i]->start = start;
         philo[i]->forks = forks;
         philo[i]->message = message;
@@ -78,8 +79,5 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
         philo[i]->s = s;
         i++;   
     }
-    //printf(" this is the t_die of philoserfer %d = %d \n", philo[0]->id, philo[0]->t_die);
     odds_philo(threads, philo);
-    // usleep(200);
-    // eveen_philo(threads, philo);
  }

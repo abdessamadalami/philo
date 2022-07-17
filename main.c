@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 08:16:57 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/15 20:07:00 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:28:39 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ long long get_time(void)
 }
 
 
- int check_n(t_phil **philo , int n_p)
+ int check_n(t_phil **philo, int n_p, int n_eat)
  {
     
     int index = 0;
     while (index < n_p)
     {
        // pthread_mutex_lock(&philo[index]->m);
-        if(philo[index]->n_t_eat != 0)
+        if(philo[index]->n_t_eat != n_eat)
             return 0;
         index++;
-       // pthread_mutex_unlock(&philo[index]->m);
+      //  pthread_mutex_unlock(&philo[index]->m);
     }
     return 1;
  }
@@ -56,14 +56,9 @@ long long get_time(void)
                 return (1);
             }
            pthread_mutex_unlock(&philo[index]->m);
-          // 
-            if (check_n(philo,arg->n_philo))
-            {
-               //  pthread_mutex_destroy(&philo[index]->m);
+            if ( arg->n_t_eat != -1 && check_n(philo,arg->n_philo,arg->n_t_eat))
                 return (1);
-            }
-            pthread_mutex_destroy(&philo[index]->m);
-           // pthread_mutex_unlock(&philo[index]->m);
+            // pthread_mutex_destroy(&philo[index]->m);
             index++;
         }
     }

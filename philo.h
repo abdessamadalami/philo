@@ -49,7 +49,7 @@ int         ft_atoi(const char *nbr);
 void        creat_philos(pthread_t *threads, t_phil **philo, t_par *arg);
 void        ft_forks(t_phil *philo);
 void        *rotin(void   *ptr);
-int         check_n(t_phil **philo , int n_p);
+int         check_n(t_phil **philo , int n_p, int n_eat);
 void        eveen_philo(pthread_t *threads, t_phil **philo);
 void        odds_philo(pthread_t *threads, t_phil **philo);
 void        ft_usleep(long time);

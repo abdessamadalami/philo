@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 12:37:19 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/17 14:46:16 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:49:06 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void* routine(void* args) {
     a++;
     printf("Hello from process %d %d %d \n", *(int*)args, (int)semaphore,a);
     sem_post(&semaphore);
-    exit(0);
+   
   //  free(args);
 }
 

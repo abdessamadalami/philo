@@ -7,8 +7,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Sun Jul 17 13:39:22 2022
+
+# Make data base, printed on Mon Jul 18 07:07:47 2022
 
 # Variables
 
@@ -30,14 +32,12 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 15)
-CFLAGS = -Wall -Wextra -Werror 
-# makefile (from `Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
+# makefile
+MAKEFILE_LIST := 
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.wYZ8Rgz2DI/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.07i3IKRuka/Render
 # environment
 PATH = /goinfre/ael-oual//.brew/bin:/Users/ael-oual/goinfre/.brew/bin:/goinfre/ael-oual//.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -49,7 +49,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.9iprvHqAKp/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.PjnX3KzFac/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -86,24 +86,16 @@ MAKECMDGOALS := all
 HOMEBREW_CACHE = /tmp/ael-oual/Homebrew/Caches
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 14)
-CC = gcc
-# makefile (from `Makefile', line 13)
-BS = main.c message.c philo.c rotine.c tools.c
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = ael-oual
 # makefile
-.DEFAULT_GOAL := all
-# makefile (from `Makefile', line 16)
-NAME = philo
+.DEFAULT_GOAL := 
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 17)
-OBJB = $(BS:.c=.o)
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
@@ -123,7 +115,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000000a.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -139,9 +131,10 @@ MAKEFILES :=
 # environment
 PAGER = less
 # environment
+ 
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186a7
+SECURITYSESSIONID = 18752
 # automatic
 ^F = $(notdir $^)
 # default
@@ -153,9 +146,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3837
+VSCODE_PID = 64512
 # variable set hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=1/103=1%
+# Load=66/1024=6%, Rehash=0, Collisions=1/87=1%
 
 # Pattern-specific Variable Values
 
@@ -163,9 +156,9 @@ VSCODE_PID = 3837
 
 # Directories
 
-# . (device 16777227, inode 5028419): 21 files, no impossibilities.
+# . (device 16777227, inode 5028419): 8 files, no impossibilities.
 
-# 21 files, no impossibilities in 1 directories.
+# 8 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -173,41 +166,12 @@ VSCODE_PID = 3837
 
 # Files
 
-all: main.o message.o philo.o rotine.o tools.o
-#  Command-line target.
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := all
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := main.o message.o philo.o rotine.o tools.o
-# automatic
-# | := 
-# automatic
-# < := main.o
-# automatic
-# ^ := main.o message.o philo.o rotine.o tools.o
-# automatic
-# ? := main.o message.o philo.o rotine.o tools.o
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
-#  commands to execute (from `Makefile', line 19):
-	$(CC) $(CFLAGS) $(OBJB) 
-	
-
 # Not a target:
-philo.o:
+all:
+#  Command-line target.
 #  Implicit rule search has been done.
-#  Last modified 2022-07-16 10:28:51
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -219,17 +183,23 @@ philo.o:
 
 # Not a target:
 Makefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-07-16 09:50:07
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Failed to be updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-fclean: clean
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+# Not a target:
+makefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .DEFAULT:
@@ -237,68 +207,29 @@ fclean: clean
 #  Modification time never checked.
 #  File has not been updated.
 
-re: fclean all
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
 # Not a target:
-rotine.o:
+GNUmakefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-07-16 10:28:51
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-clean:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 21):
-	rm -f $(OBJB)
-	
-
-# Not a target:
-message.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-16 10:28:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-main.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-16 10:28:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-tools.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-16 10:28:51
-#  File has been updated.
-#  Successfully updated.
+#  Failed to be updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=2/34=6%
+# Load=6/1024=1%, Rehash=0, Collisions=0/17=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 1
-# # of strcache buffers: 1
-# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
-# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+# # of strings in strcache: 0
+# # of strcache buffers: 0
+# strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
+# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Jul 17 13:39:22 2022
+# Finished Make data base on Mon Jul 18 07:07:47 2022
 
  

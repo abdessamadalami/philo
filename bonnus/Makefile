@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+         #
+#    By: sultan <sultan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 12:32:39 by ael-oual          #+#    #+#              #
-#    Updated: 2022/07/18 07:07:39 by ael-oual         ###   ########.fr        #
+#    Updated: 2022/07/18 11:09:34 by sultan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 BS = main.c message.c philo.c rotine.c tools.c
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread #
+CFLkAGS = -Wall -Wextra -Werror -g -fsanitize=thread #
 NAME = philo
 OBJB = $(BS:.c=.o)
 all: $(OBJB)

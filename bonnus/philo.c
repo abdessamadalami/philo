@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sultan <sultan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:54:11 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/18 08:17:33 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:26:40 by sultan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,25 @@
 void odds_philo(pthread_t *threads, t_phil **philo)
 {
     int index;
-    int pid;
 
     index = 0;
-    while (index != philo[0]->n_of_t)
+    while (index < philo[0]->n_philo)
     {
-        pid = fork();
-        if (pid == 0)
+        philo[index]->pid = malloc(sizeof(int) * philo[index]->n_philo);
+       // printf("%lld ms philo ",philo[index]->start);
+        philo[index]->last_eat = get_time();
+        philo[index]->pid[index] = fork();
+        if (philo[index]->pid[index] == 0)
         {
+          // printf("%lld ls philo \n",philo[index]->last_eat);
            rotin((void *)philo[index]);
            exit(0);
         }
-       
        index++;
     }
+    while (wait(0) != -1)
+	{
+	} 
 }
 
 void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
@@ -42,9 +47,10 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
     long long   start;
 
     i = 0;
-    forks = sem_open("/forks", 0644, arg->n_philo);
-    forks = sem_open("/message", 0644, 1);
-    long long start = get_time();
+    forks = sem_open("/forks", O_CREAT | O_EXCL, 0644, arg->n_philo);
+    message = sem_open("/message", O_CREAT | O_EXCL, 0644, 1);
+    start = get_time();
+    
     while (i < arg->n_philo)
     {
         philo[i] = malloc(sizeof(t_phil));
@@ -53,10 +59,11 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
         philo[i]->t_die = arg->t_die;
         philo[i]->t_eat = arg->t_eat;
         philo[i]->t_sleep = arg->t_sleep;
-        philo[i]->n_t_eat = 0;
-        philo[i]->start = start;
         philo[i]->forks = forks;
-        philo[i]->last_eat = start;
+        philo[i]->message = message;
+        philo[i]->start = start;
+        philo[i]->n_t_eat = arg->n_t_eat;
+       // philo[i]->last_eat = start;
         i++;   
     }
     odds_philo(threads, philo);

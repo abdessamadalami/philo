@@ -6,7 +6,7 @@
 /*   By: sultan <sultan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:54:11 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/19 13:26:40 by sultan           ###   ########.fr       */
+/*   Updated: 2022/07/19 20:22:42 by sultan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 void odds_philo(pthread_t *threads, t_phil **philo)
 {
     int index;
+    int *ptr;
 
     index = 0;
+    ptr = malloc(sizeof(int) * philo[index]->n_philo);
     while (index < philo[0]->n_philo)
     {
-        philo[index]->pid = malloc(sizeof(int) * philo[index]->n_philo);
        // printf("%lld ms philo ",philo[index]->start);
         philo[index]->last_eat = get_time();
-        philo[index]->pid[index] = fork();
-        if (philo[index]->pid[index] == 0)
+        ptr[index] = fork();
+        if (ptr[index]== 0)
         {
-          // printf("%lld ls philo \n",philo[index]->last_eat);
+           // printf("%lld ls philo \n",philo[index]->last_eat);
            rotin((void *)philo[index]);
            exit(0);
         }
@@ -47,8 +48,10 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
     long long   start;
 
     i = 0;
-    forks = sem_open("/forks", O_CREAT | O_EXCL, 0644, arg->n_philo);
-    message = sem_open("/message", O_CREAT | O_EXCL, 0644, 1);
+    sem_unlink("/dforks");
+    sem_unlink("/dmessage");
+    forks = sem_open("/dforks", O_CREAT | O_EXCL, 0644, arg->n_philo);
+    message = sem_open("/dmessage", O_CREAT | O_EXCL, 0644, 1);
     start = get_time();
     
     while (i < arg->n_philo)
@@ -63,7 +66,6 @@ void creat_philos(pthread_t *threads, t_phil **philo, t_par *arg)
         philo[i]->message = message;
         philo[i]->start = start;
         philo[i]->n_t_eat = arg->n_t_eat;
-       // philo[i]->last_eat = start;
         i++;   
     }
     odds_philo(threads, philo);

@@ -39,13 +39,13 @@ typedef struct arg
     int t_eat;
     int n_t_eat;
 }   t_par;
-
+void whait_pro(int *ptr, int n);
+void kill_process(int *ptr, int n);
 int     ft_isdigit(int c);
 size_t  ft_strlen(const char *str);
 int         check_argv(char *argv);
 t_par       *check(int ac, char **av);
 int         ft_atoi(const char *nbr);
-void        creat_philos(pthread_t *threads, t_phil **philo, t_par *arg);
 void        ft_forks(t_phil *philo);
 void        *rotin(t_phil   *ptr);
 int         check_n(t_phil **philo , int n_p, int n_eat);
@@ -56,3 +56,4 @@ long long   get_time(void);
 pthread_mutex_t *ft_muetx(int n_philo);
 void  print_mess( char *l, t_phil *philo);
  void  *check_die(void *ptr);
+ void creat_philos(t_phil **philo, t_par *arg);

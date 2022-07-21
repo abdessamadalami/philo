@@ -6,7 +6,7 @@
 /*   By: sultan <sultan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:56:04 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/19 20:20:11 by sultan           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:21:14 by sultan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,7 @@ void ft_usleep(long time)
     while (get_time() - sleep < time)
         usleep(200);
 }
-void kill_process(t_phil *philo)
-{
-    int index;
-    index = 0;
-    while(index < philo->n_philo)
-    {
-        kill(philo->pid[index], SIGTERM);
-        index++;
-        printf(" ssss %d \n",philo->pid[index]);
-         kill(0, SIGKILL);
-    }
-   
-}
+
 void *check_die(void *ptr)
 {
     int index;
@@ -44,7 +32,8 @@ void *check_die(void *ptr)
             {
                 sem_wait(philo->message);
                 printf("%lld ms philo %d died\n", get_time() - philo->start, philo->id);
-                exit(1337);
+                exit(1);
+                //kill(0,SIGKILL);
             }
             usleep(200);
     }

@@ -6,7 +6,7 @@
 /*   By: sultan <sultan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 08:16:57 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/18 11:07:08 by sultan           ###   ########.fr       */
+/*   Updated: 2022/07/20 17:15:36 by sultan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int main(int ac, char *av[])
     }
     threads = malloc(sizeof(pthread_t) * arg->n_philo);
     philo = malloc(sizeof(t_phil) * arg->n_philo);
-    creat_philos(threads, philo, arg);
+    creat_philos(philo, arg);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:48:00 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/15 22:20:59 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:08:02 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ int	ft_atoi(const char *nbr)
 	return (nb * s);
 }
 
-int	ft_isdigit(int c)
-{
-	if (c <= '9' && c >= '0')
-		return (1);
-	return (0);
-}
 int	check_argv(char *argv)
 {
 	int	index;
@@ -76,35 +70,31 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-t_par *check(int ac, char **av)
+t_par	*check(int ac, char **av, int index)
 {
-    int index;
-    
-    t_par *parm;
-    index = 1;
-    parm = malloc(sizeof(t_par));
-    parm -> n_t_eat = -1;
-    while (index < ac)
-    {
-       if (av[index] != NULL && ft_strlen(av[index]) != 0 && check_argv(av[index]))
-        {
-            if (index == 1)
-                parm->n_philo= ft_atoi(av[index]);
-            if (index == 2)
-                parm->t_die = ft_atoi(av[index]);
-            if (index == 4)
-                parm->t_sleep = ft_atoi(av[index]);
-            if (index == 3)
-                parm->t_eat = ft_atoi(av[index]);
-            if (index == 5)
-			{
-			
-                parm->n_t_eat = ft_atoi(av[index]);
-			}
-        }
-        else
-            return 0;
-        index++;
-    }
-    return parm;
+	t_par	*parm;
+
+	parm = malloc(sizeof(t_par));
+	parm -> n_t_eat = -1;
+	while (index < ac)
+	{
+		if (av[index] != NULL && ft_strlen(av[index]) != 0
+			&& check_argv(av[index]))
+		{
+			if (index == 1)
+				parm->n_philo = ft_atoi(av[index]);
+			if (index == 2)
+				parm->t_die = ft_atoi(av[index]);
+			if (index == 4)
+				parm->t_sleep = ft_atoi(av[index]);
+			if (index == 3)
+				parm->t_eat = ft_atoi(av[index]);
+			if (index == 5)
+				parm->n_t_eat = ft_atoi(av[index]);
+		}
+		else
+			return (0);
+		index++;
+	}
+	return (parm);
 }

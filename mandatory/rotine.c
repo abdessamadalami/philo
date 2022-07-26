@@ -6,46 +6,52 @@
 /*   By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 11:56:04 by ael-oual          #+#    #+#             */
-/*   Updated: 2022/07/16 09:30:59 by ael-oual         ###   ########.fr       */
+/*   Updated: 2022/07/22 07:24:12 by ael-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void ft_usleep(long time)
+void	ft_usleep(long time)
 {
-    long sleep;
+	long long	sleep;
 
-    sleep = get_time();
-    while (get_time() - sleep < time)
-        usleep(200);
+	sleep = get_time();
+	while (get_time() - sleep < time)
+		usleep(200);
 }
 
-void    *rotin(void   *ptr)
+int	ft_isdigit(int c)
 {
-    t_phil *philo;
+	if (c <= '9' && c >= '0')
+		return (1);
+	return (0);
+}
 
-    philo = (t_phil *)ptr;
-    while (1)
-    {
-        pthread_mutex_lock(&philo->forks[philo->left]);
-        print_mess(philo->left,'l', philo);
-        pthread_mutex_lock(&philo->forks[philo->right]);
-        print_mess(philo->right, 'r', philo);
-        print_mess(12, 'e', philo);
-        
-        pthread_mutex_lock(&philo->m);
-        philo->n_t_eat++;
-        pthread_mutex_unlock(&philo->m);
-        pthread_mutex_lock(&philo->m);
-        philo->last_eat = get_time();
-        pthread_mutex_unlock(&philo->m);
-        ft_usleep(philo->t_eat);
-        pthread_mutex_unlock(&philo->forks[philo->right]);
-        pthread_mutex_unlock(&philo->forks[philo->left]);
-        print_mess(12, 's', philo);
-        ft_usleep(philo->t_sleep);
-        print_mess(12, 't', philo);
-    }
-    return (NULL);
+void	*rotin(void *ptr)
+{
+	t_phil	*philo;
+
+	philo = (t_phil *)ptr;
+	while (1)
+	{
+		pthread_mutex_lock(&philo->forks[philo->left]);
+		print_mess("has taken fork", philo);
+		pthread_mutex_lock(&philo->forks[philo->right]);
+		print_mess("has taken fork", philo);
+		print_mess("is eating", philo);
+		pthread_mutex_lock(&philo->message);
+		philo->n_t_eat++;
+		pthread_mutex_unlock(&philo->message);
+		pthread_mutex_lock(&philo->message);
+		philo->last_eat = get_time();
+		pthread_mutex_unlock(&philo->message);
+		ft_usleep(philo->t_eat);
+		pthread_mutex_unlock(&philo->forks[philo->right]);
+		pthread_mutex_unlock(&philo->forks[philo->left]);
+		print_mess("is sleeping", philo);
+		ft_usleep(philo->t_sleep);
+		print_mess("is thinking", philo);
+	}
+	return (NULL);
 }

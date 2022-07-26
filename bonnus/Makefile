@@ -3,21 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sultan <sultan@student.42.fr>              +#+  +:+       +#+         #
+#    By: ael-oual <ael-oual@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 12:32:39 by ael-oual          #+#    #+#              #
-#    Updated: 2022/07/18 11:09:34 by sultan           ###   ########.fr        #
+#    Updated: 2022/07/22 16:45:26 by ael-oual         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BS = main.c message.c philo.c rotine.c tools.c
+BS = main.c philoo.c rotine.c tools.c
 CC = gcc
-CFLkAGS = -Wall -Wextra -Werror -g -fsanitize=thread #
+CFLAGS = -Wall -Wextra -Werror #`-g -fsanitize=thread #
 NAME = philo
 OBJB = $(BS:.c=.o)
 all: $(OBJB)
-	$(CC) $(CFLAGS) $(OBJB) 
+	$(CC) $(CFLAGS) $(OBJB) -o $(NAME)
 clean: 
 	rm -f $(OBJB)
-fclean:clean
+fclean:clean 
+	rm $(NAME)
 re: fclean all
